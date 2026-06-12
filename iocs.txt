@@ -1,0 +1,10 @@
+# Known malicious IP (Tor exit node)
+185.220.101.1
+# Google DNS - should be clean
+8.8.8.8
+# Test domain
+malware-test.com
+# Clean domain
+google.com
+# EICAR test file MD5 hash - standard AV test, safe to use
+44d88612fea8a8f36de82e1278abb02f

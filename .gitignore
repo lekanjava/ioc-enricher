@@ -1,0 +1,24 @@
+# Environment and secrets
+.env
+*.env
+.env.*
+!.env.example
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.coverage
+
+# Reports
+reports/
+
+# IDE
+.vscode/
+.idea/
+*.swp
