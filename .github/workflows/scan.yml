@@ -1,0 +1,37 @@
+name: IOC Enrichment Scan
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest tests/ -v
+
+      - name: Run IOC enrichment
+        env:
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+          ABUSE_API_KEY: ${{ secrets.ABUSE_API_KEY }}
+        run: python main.py --file iocs.txt
+
+      - name: Upload report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ioc-report
+          path: reports/
